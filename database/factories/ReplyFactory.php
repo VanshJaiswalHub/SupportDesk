@@ -2,7 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Reply;
+use App\Models\Ticket;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
