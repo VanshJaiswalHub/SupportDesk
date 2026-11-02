@@ -46,10 +46,18 @@ new #[Title('Tickets')] class extends Component {
 }; ?>
 
 <section class="w-full">
-    <flux:heading size="xl">{{ __('Tickets') }}</flux:heading>
-    <flux:subheading>
-        {{ auth()->user()->isAgent() ? __('All tickets') : __('Your tickets') }}
-    </flux:subheading>
+   <div class="flex items-start justify-between gap-4">
+        <div>
+            <flux:heading size="xl">{{ __('Tickets') }}</flux:heading>
+            <flux:subheading>
+                {{ auth()->user()->isAgent() ? __('All tickets') : __('Your tickets') }}
+            </flux:subheading>
+        </div>
+
+        <flux:button variant="primary" icon="plus" :href="route('tickets.create')" wire:navigate>
+            {{ __('New ticket') }}
+        </flux:button>
+    </div>
 
     @if ($this->tickets->isEmpty())
         <flux:text class="mt-6">{{ __('No tickets yet.') }}</flux:text>
