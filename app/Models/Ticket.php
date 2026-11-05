@@ -33,4 +33,21 @@ class Ticket extends Model
     {
         return $this->hasMany(Reply::class);
     }
+
+    public const STATUS_TRANSITIONS = [
+        'open' => ['in_progress'],
+        'in_progress' => ['resolved'],
+        'resolved' => ['in_progress', 'closed'],
+        'closed' => [],
+    ];
+
+    public function allowedNextStatuses(): array
+    {
+        return self::STATUS_TRANSITIONS[$this->status] ?? [];
+    }
+
+    public function canMoveTo(string $status): bool
+    {
+        return in_array($status, $this->allowedNextStatuses(), true);
+    }
 }

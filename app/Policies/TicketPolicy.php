@@ -38,6 +38,10 @@ class TicketPolicy
 
     public function reply(User $user, Ticket $ticket): bool
     {
+        if ($ticket->status === 'closed') {
+            return false;
+        }
+
         if ($user->isAgent()) {
             return true;
         }

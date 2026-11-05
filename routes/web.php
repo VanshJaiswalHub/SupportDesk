@@ -10,6 +10,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::livewire('tickets', 'pages::tickets.index')->name('tickets.index');
     Route::livewire('tickets', 'pages::tickets.index')->name('tickets.index');
     Route::livewire('tickets/create', 'pages::tickets.create')->name('tickets.create');
+    Route::livewire('tickets/{ticket}', 'pages::tickets.show')->name('tickets.show');
 });
 
 require __DIR__.'/settings.php';

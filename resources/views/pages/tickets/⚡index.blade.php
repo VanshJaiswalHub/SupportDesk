@@ -77,8 +77,11 @@ new #[Title('Tickets')] class extends Component {
             <flux:table.rows>
                 @foreach ($this->tickets as $ticket)
                     <flux:table.row :key="$ticket->id">
-                        <flux:table.cell>{{ $ticket->subject }}</flux:table.cell>
-                        <flux:table.cell>{{ $ticket->category->name }}</flux:table.cell>
+                        <flux:table.cell>
+                            <a href="{{ route('tickets.show', $ticket) }}" wire:navigate class="font-medium hover:underline">
+                                {{ $ticket->subject }}
+                            </a>
+                        </flux:table.cell>
                         @if (auth()->user()->isAgent())
                             <flux:table.cell>{{ $ticket->customer->name }}</flux:table.cell>
                         @endif
